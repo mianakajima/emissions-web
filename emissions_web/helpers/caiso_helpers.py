@@ -19,6 +19,16 @@ def get_supply_trend_today():
 
     df.drop('Time', axis = 1, inplace = True)
 
-    df_long = pd.melt(df, id_vars = ['DateTime'])
+    #df_long = pd.melt(df, id_vars = ['DateTime'])
 
-    return df_long
+    return df
+
+def get_percentage_renewable(df):
+    """Return df with percentage of load served by non GHG-producing energy sources."""
+
+    df_new = df.copy()
+    df_new['Renewables'] = df['Solar'] + df['Wind'] + df['Small hydro'] + df['Nuclear'] + df['Large Hydro']
+    df_new['Total'] = df.drop('DateTime', axis = 1).sum(axis = 1)
+    df_new['RenewablePercentage'] = 100*df_new['Renewables']/df_new['Total']
+
+    return df_new
