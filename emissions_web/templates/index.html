@@ -1,8 +1,15 @@
 <!doctype html>
 <html>
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
  <body>
   <h1>Grid Cleanliness</h1>
-  <p> Current Percentage of Load Served by Renewable Sources: {{current_percentage}}%</p>
+  <p> Current Percentage of Load Served by Renewable Sources: </p>
+  <div class="boxed">
+    {{current_percentage}}%
+  </div>
   <div id='chart' class='chart'></div>
 
   <div id='chart2' class ='chart'></div>
